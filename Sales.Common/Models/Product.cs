@@ -10,7 +10,7 @@
         public int ProductId { get; set; }
 
         [Required]
-        public string Desciption { get; set; }
+        public string Description { get; set; }
 
         public Decimal Price { get; set; }
 
