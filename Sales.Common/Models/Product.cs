@@ -17,5 +17,10 @@
         public bool IsAvailable { get; set; }
 
         public DateTime PublishOn { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}", Description);
+        }
     }
 }
