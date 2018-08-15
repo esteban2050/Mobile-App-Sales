@@ -37,7 +37,18 @@
         private async void LoadProducts()
         {
             this.IsRefreshing = true;
-            var response = await this.apiService.GetList<Product>("https://salesapiservices.azurewebsites.net", "/api", "/Products");                
+
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                {
+                    this.IsRefreshing = false;
+                    await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Aceptar");
+                    return;
+                }
+            }
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetList<Product>(url, "/api", "/Products");                
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
@@ -46,7 +57,7 @@
             }
             var list = (List<Product>)response.Result;
             this.Products = new ObservableCollection<Product>(list);
-            this.IsRefreshing = true;
+            this.IsRefreshing = false;
         }
 
         public ICommand RefreshCommand
