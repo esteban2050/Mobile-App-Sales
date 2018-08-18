@@ -79,20 +79,29 @@ namespace Sales.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please turn on your internet.
-        /// </summary>
-        public static string InternetSettings {
-            get {
-                return ResourceManager.GetString("InternetSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No internet access.
         /// </summary>
         public static string NoInternet {
             get {
                 return ResourceManager.GetString("NoInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        public static string Products {
+            get {
+                return ResourceManager.GetString("Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please turn on your internet.
+        /// </summary>
+        public static string TurnOnInternet {
+            get {
+                return ResourceManager.GetString("TurnOnInternet", resourceCulture);
             }
         }
     }

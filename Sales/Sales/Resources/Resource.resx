@@ -123,10 +123,13 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="InternetSettings" xml:space="preserve">
+  <data name="TurnOnInternet" xml:space="preserve">
     <value>Please turn on your internet</value>
   </data>
   <data name="NoInternet" xml:space="preserve">
     <value>No internet access</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
   </data>
 </root>

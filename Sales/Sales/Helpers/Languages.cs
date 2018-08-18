@@ -17,20 +17,22 @@
         {
             get { return Resource.Accept; }
         }
-
         public static string Error
         {
             get { return Resource.Error; }
         }
-
-        public static string InternetSettings
+        public static string TurnOnInternet
         {
-            get { return Resource.InternetSettings; }
+            get { return Resource.TurnOnInternet; }
         }
-
         public static string NoInternet
         {
             get { return Resource.NoInternet; }
-        }        
+        }
+        public static string Products
+        {
+            get { return Resource.Products; }
+        }
+
     }
 }
