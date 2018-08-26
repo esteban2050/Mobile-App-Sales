@@ -29,6 +29,18 @@
         [DataType(DataType.Date)]
         public DateTime PublishOn { get; set; }
 
+        public string  ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageFullPath))
+                {
+                    return "if_deliverables_45506";
+                }
+                return $"https://salesbackend.azurewebsites.net/{this.ImagePath.Substring(1)}";
+            }
+        }
+
         public override string ToString()
         {
             return string.Format("{0}", Description);
