@@ -14,7 +14,7 @@
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Products}"
-            Padding="20">
+            Padding="20">            
             <ListView
                 HasUnevenRows="True"
                 IsRefreshing="{Binding IsRefreshing}"
