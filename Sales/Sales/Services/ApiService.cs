@@ -45,7 +45,7 @@
 	        {
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(urlBase);
-                var url = string.Format("{0}{1}", prefix, controller);
+                var url = $"{prefix}{controller}";
                 var response = await client.GetAsync(url);
                 var answer = await response.Content.ReadAsStringAsync(); // se usa para leer todo el json, por que es string
                 if (!response.IsSuccessStatusCode)//si no canchilo la vueltaaca se le devuelve la respuesta de false con la respuesta "answer"
@@ -97,6 +97,75 @@
                 {
                     IsSuccess = true,
                     Result = obj,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        public async Task<Response> Put<T>(string urlBase, string prefix, string controller, T model, int id)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(model); // Coge un objeto y lo vuelev string, osea el JSON
+                var content = new StringContent(request, Encoding.UTF8, "application/json"); // El body que se le envia por medio del metodo POST
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = $"{prefix}{controller}/{id}";
+                var response = await client.PutAsync(url, content);
+                var answer = await response.Content.ReadAsStringAsync(); // se usa para leer todo el json, por que es string
+                if (!response.IsSuccessStatusCode)//si no canchilo la vueltaaca se le devuelve la respuesta de false con la respuesta "answer"
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+                var obj = JsonConvert.DeserializeObject<List<T>>(answer); //Va a convertir todo el string que viene "answer" en una lista de objetos
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = obj,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        public async Task<Response> Delete(string urlBase, string prefix, string controller, int id)
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = $"{prefix}{controller}/{id}";
+                var response = await client.DeleteAsync(url);
+                var answer = await response.Content.ReadAsStringAsync(); // se usa para leer todo el json, por que es string
+                if (!response.IsSuccessStatusCode)//si no canchilo la vueltaaca se le devuelve la respuesta de false con la respuesta "answer"
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+               
+                return new Response
+                {
+                    IsSuccess = true,                   
                 };
             }
             catch (Exception ex)
